@@ -24,19 +24,21 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          # TODO set codecov token
+          token: token
           file: build/reports/jacoco/report.xml
       - name: Deploy project
         uses: akhileshns/heroku-deploy@v3.4.6
         with:
-          # TODO set Heroku app name and user email
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name:
-          heroku_email:
+          # TODO set Heroku app name, token and user email
+          heroku_api_key: token
+          heroku_app_name: name
+          heroku_email: email
       - name: Checkout test repository
         uses: actions/checkout@v2
         with:
-          repository: java-education/homework3-testing
+          repository: Digital-Habits/homework3-testing
+          token: b50a0503993f74104ebf9831d21e3d75425d9c0a
           path: integration-tests
           ref: master
       - name: Run integration tests
