@@ -11,39 +11,41 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Install Java
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
       - name: Build project
         uses: eskatos/gradle-command-action@v1
         with:
           dependencies-cache-enabled: true
           arguments: clean build jacocoTestReport
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          # TODO set codecov token
+          # TODO прописать свой TOKEN из codecov
           token: token
           file: build/reports/jacoco/report.xml
-      - name: Deploy project
-        uses: akhileshns/heroku-deploy@v3.4.6
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          # TODO set Heroku app name, token and user email
+          # TODO прописать свой API_KEY из heroku
           heroku_api_key: token
-          heroku_app_name: name
-          heroku_email: email
-      - name: Checkout test repository
-        uses: actions/checkout@v2
+          heroku_app_name: homework3-app
+          heroku_email: romanowalex@mail.ru
+          usedocker: true
+
+      - name: Run API Tests
+        id: run-newman
+        uses: anthonyvscode/newman-action@v1
         with:
-          repository: Digital-Habits/homework3-testing
-          token: b50a0503993f74104ebf9831d21e3d75425d9c0a
-          path: integration-tests
-          ref: master
-      - name: Run integration tests
-        uses: eskatos/gradle-command-action@v1
-        with:
-          build-root-directory: integration-tests
-          # TODO set Heroku service url
-          arguments: clean test -PtargetUrl=https://url.herokuapp.com
+          collection: postman/homework3.postman_collection.json
+          environment: postman/[heroku] digital-habits.postman_environment.json
+          delayRequest: 50
+          reporters: cli

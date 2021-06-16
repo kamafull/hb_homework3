@@ -48,42 +48,45 @@ CREATE TABLE department
 
 ## Требования
 1. Дописать бизнес-функционал и unit-тесты.
+1. Создание схемы базы данных сделать через скрипты миграции flyway.
 1. Для работы с базой данных использовать Hibernate (т.е. EntityManager). Использовать JPA нельзя.
 1. Используя Jacoco (code coverage), сгенерировать отчет о покрытии и задеплоить его на [https://codecov.io/](https://codecov.io/).
 1. Задеплоить приложение на Heroku.
+1. В GitHub Actions проверить что сборка и прогон интеграционных тестов завершились успешно. 
 
 ## Сборка приложения 
 ```shell script
 # запустить PostgreSQL в docker-контейнере
-docker-compose up -d postgres
+docker compose up -d postgres
 
-# загружает gradle wrapper 6.6
+# загружает gradle wrapper 6.8
 ./gradlew wrapper
 
-# сборка проекта, прогон unit-тестов, запуск приложения
+# сборка проекта, прогон unit-тестов, локальный запуск приложения (по-умолчанию профиль local)
 ./gradlew clean build bootRun 
 ```
 
 ##  Комментарии
-1. [Установить Docker](https://docs.docker.com/engine/install/) и [Docker Compose](https://docs.docker.com/compose/install/).
-Для Windows и Mac он уже идет в комплекте с Docker.
+1. Все токены нужно прописывать в открытом виде без SECRETS, потому что при создании Pull Request SECRETS недоступны, а значит тесты будут падать.
 1. Для настройки Codecov нужно:
     1. авторизоваться на [https://codecov.io/](https://codecov.io/) через GitHub, выбрать нужный репозиторий;
-    1. в GitHub -> Settings -> Secrets добавить новый ключ `CODECOV_TOKEN`;
+    1. в .github/workflows/main.yml явно прописать свой токен;
     1. после прогона тестов, данные по покрытию отображаются странице проекта `https://codecov.io/gh/<github-user>/<repository-name>`.
-1. По описанию методов генерируется OpenAPI спецификация, описание в json доступно по адресу http://localhost:8080/api-docs,
-для просмотра в Swagger UI его нужно запустить через docker `docker run -p 8070:8080 -e API_URL=http://localhost:8080/api-docs swaggerapi/swagger-ui` и открыть `http://localhost:8070`
+1. По описанию методов генерируется OpenAPI спецификация, описание в json доступно по адресу http://localhost:8080/swagger-ui.html.
 1. Описание работы Heroku [https://devcenter.heroku.com/articles/how-heroku-works](https://devcenter.heroku.com/articles/how-heroku-works).
-1. Для деплоя на Heroku использовать [Deploy to Heroku](https://github.com/marketplace/actions/deploy-to-heroku). Требуется прописать `HEROKU_API_KEY` в Secrets.
-1. Для подключения БД на Heroku заходите через Dashboard в раздел Resources и в блоке Add-ons ищете Heroku Postgres.
-Для получения адреса, пользователя и пароля переходите в саму БД и выбираете раздел Settings -> Database Credentials.
-Эти данные заносите в [application-heroku.properties](src/main/resources/application-heroku.properties).
+1. Для деплоя на Heroku использовать docker, Dockerfile находится в корне проекта. Для деплоя на heroku требуется
+   явно прописать `API_KEY` в .github/workflows/main.yml.
+1. Для подключения БД на Heroku заходите через Dashboard в раздел Resources и в блоке Add-ons ищете Heroku Postgres. 
+   Для получения адреса, пользователя и пароля переходите в саму БД и выбираете раздел Settings -> Database Credentials.
+   В блоке settings -> config vars создаете переменные `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`.
+   Там же надо прописать `SPRING_PROFILES_ACTIVE` heroku, чтобы при запуске использовался профиль heroku.
 1. Unit-тесты на Spring:
     * [Web Layer tests](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-testing-spring-boot-applications-testing-autoconfigured-mvc-tests)
     * [Service tests](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-testing-spring-boot-applications)
     * [Database tests](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-testing-spring-boot-applications-testing-autoconfigured-jpa-test)
-1. После успешного деплоя на Heroku запускаются интеграционные тесты (репозиторий [java-education/homework3-testing](https://github.com/java-education/homework3-testing)).
-1. Для запуска в [main.yml](.github/workflows/main.yml) прописать url сервиса на Heroku.
+1. После успешного деплоя на Heroku, через newman запускаются интеграционные тесты. Интеграционные тесты можно проверить локально, для этого 
+   нужно импортировать в Postman коллекцию [homework3.postman_collection.json](postman/homework3.postman_collection.json) и
+   environment [[local] digital-habits.postman_environment.json](postman/%5Blocal%5D%20digital-habits.postman_environment.json).
 
 ##  Как сдавать?
 * Fork этого репозитория
