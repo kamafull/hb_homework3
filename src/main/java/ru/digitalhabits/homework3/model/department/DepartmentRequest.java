@@ -1,4 +1,4 @@
-package ru.digitalhabits.homework3.model;
+package ru.digitalhabits.homework3.model.department;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

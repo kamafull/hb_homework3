@@ -1,8 +1,8 @@
 package ru.digitalhabits.homework3.service;
 
-import ru.digitalhabits.homework3.model.DepartmentFullResponse;
-import ru.digitalhabits.homework3.model.DepartmentRequest;
-import ru.digitalhabits.homework3.model.DepartmentShortResponse;
+import ru.digitalhabits.homework3.model.department.DepartmentFullResponse;
+import ru.digitalhabits.homework3.model.department.DepartmentRequest;
+import ru.digitalhabits.homework3.model.department.DepartmentShortResponse;
 
 import javax.annotation.Nonnull;
 import java.util.List;

@@ -12,7 +12,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import ru.digitalhabits.homework3.model.*;
+import ru.digitalhabits.homework3.model.error.ErrorResponse;
+import ru.digitalhabits.homework3.model.error.ValidationErrorResponse;
+import ru.digitalhabits.homework3.model.person.PersonFullResponse;
+import ru.digitalhabits.homework3.model.person.PersonRequest;
+import ru.digitalhabits.homework3.model.person.PersonShortResponse;
 import ru.digitalhabits.homework3.service.PersonService;
 
 import javax.validation.Valid;

@@ -28,17 +28,15 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          # TODO прописать свой TOKEN из codecov
-          token: token
+          token: 683e1086-883f-436f-a86d-ed525c53d5c2
           file: build/reports/jacoco/report.xml
 
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          # TODO прописать свой API_KEY из heroku
-          heroku_api_key: token
-          heroku_app_name: homework3-app
-          heroku_email: romanowalex@mail.ru
+          heroku_api_key: ee12bccf-7238-483d-9b55-584f77a226b2
+          heroku_app_name: departmentcrud
+          heroku_email: developer.urumov@gmail.com
           usedocker: true
 
       - name: Run API Tests

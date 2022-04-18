@@ -1,4 +1,4 @@
-package ru.digitalhabits.homework3.model;
+package ru.digitalhabits.homework3.model.error;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
