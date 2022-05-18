@@ -1,4 +1,4 @@
-package ru.digitalhabits.homework3.model.error;
+package ru.digitalhabits.homework3.model;
 
 import lombok.Data;
 
