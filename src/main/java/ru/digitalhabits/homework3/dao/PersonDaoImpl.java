@@ -1,5 +1,6 @@
 package ru.digitalhabits.homework3.dao;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.stereotype.Repository;
 import ru.digitalhabits.homework3.domain.Person;
 
@@ -14,31 +15,33 @@ public class PersonDaoImpl
         implements PersonDao {
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
     @Nullable
     @Override
     public Person findById(@Nonnull Integer id) {
-        return em.find(Person.class, id);
+        // TODO: NotImplemented
+        throw new NotImplementedException();
     }
 
     @Nonnull
     @Override
     public List<Person> findAll() {
-        return em.createNamedQuery("Person.findAll", Person.class).getResultList();
+        // TODO: NotImplemented
+        throw new NotImplementedException();
     }
 
     @Nonnull
     @Override
     public Person update(@Nonnull Person person) {
-        return em.merge(person);
+        // TODO: NotImplemented
+        throw new NotImplementedException();
     }
 
     @Nullable
     @Override
     public Person delete(@Nonnull Integer id) {
-        final Person person = this.findById(id);
-        em.remove(person);
-        return person;
+        // TODO: NotImplemented
+        throw new NotImplementedException();
     }
 }

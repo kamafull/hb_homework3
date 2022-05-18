@@ -1,5 +1,6 @@
 package ru.digitalhabits.homework3.dao;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.stereotype.Repository;
 import ru.digitalhabits.homework3.domain.Department;
 
@@ -14,31 +15,33 @@ public class DepartmentDaoImpl
         implements DepartmentDao {
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
     @Nullable
     @Override
     public Department findById(@Nonnull Integer id) {
-        return em.find(Department.class, id);
+        // TODO: NotImplemented
+        throw new NotImplementedException();
     }
 
     @Nonnull
     @Override
     public List<Department> findAll() {
-        return em.createNamedQuery("Department.findAll", Department.class).getResultList();
+        // TODO: NotImplemented
+        throw new NotImplementedException();
     }
 
     @Nonnull
     @Override
     public Department update(@Nonnull Department department) {
-        return em.merge(department);
+        // TODO: NotImplemented
+        throw new NotImplementedException();
     }
 
     @Nullable
     @Override
     public Department delete(@Nonnull Integer id) {
-        final Department department = this.findById(id);
-        em.remove(department);
-        return department;
+        // TODO: NotImplemented
+        throw new NotImplementedException();
     }
 }

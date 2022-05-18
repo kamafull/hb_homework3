@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.digitalhabits.homework3.model.error.ErrorDescription;
-import ru.digitalhabits.homework3.model.error.ErrorResponse;
-import ru.digitalhabits.homework3.model.error.ValidationErrorResponse;
+import ru.digitalhabits.homework3.model.ErrorDescription;
+import ru.digitalhabits.homework3.model.ErrorResponse;
+import ru.digitalhabits.homework3.model.ValidationErrorResponse;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
