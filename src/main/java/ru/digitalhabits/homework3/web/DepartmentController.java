@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.digitalhabits.homework3.model.*;
+import ru.digitalhabits.homework3.model.error.ErrorResponse;
+import ru.digitalhabits.homework3.model.error.ValidationErrorResponse;
 import ru.digitalhabits.homework3.service.DepartmentService;
 import ru.digitalhabits.homework3.service.PersonService;
 
@@ -87,7 +89,8 @@ public class DepartmentController {
             responses = @ApiResponse(responseCode = "204", description = "Department for requested ID is removed")
     )
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
+//    @DeleteMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteDepartment(@PathVariable Integer id) {
         departmentService.delete(id);
     }

@@ -1,5 +1,7 @@
 package ru.digitalhabits.homework3.service;
 
+import ru.digitalhabits.homework3.domain.Department;
+import ru.digitalhabits.homework3.domain.Person;
 import ru.digitalhabits.homework3.model.PersonFullResponse;
 import ru.digitalhabits.homework3.model.PersonRequest;
 import ru.digitalhabits.homework3.model.PersonShortResponse;
@@ -25,4 +27,10 @@ public interface PersonService {
     void addPersonToDepartment(int departmentId, int personId);
 
     void removePersonFromDepartment(int departmentId, int personId);
+
+    List<PersonShortResponse> getPersonsShortResponseByDepartment(Department department);
+
+    List<Person> getPersonsByDepartment(Department department);
+
+    void updatePerson(Person person);
 }

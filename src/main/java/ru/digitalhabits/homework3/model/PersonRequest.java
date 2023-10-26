@@ -8,7 +8,6 @@ import javax.validation.constraints.*;
 @Data
 @Accessors(chain = true)
 public class PersonRequest {
-
     @NotEmpty(message = "{field.is.empty}")
     private String firstName;
 

@@ -1,4 +1,4 @@
-package ru.digitalhabits.homework3.model;
+package ru.digitalhabits.homework3.model.error;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,8 +11,7 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class ValidationErrorResponse
-        extends ErrorResponse {
+public class ValidationErrorResponse extends ErrorResponse {
     private final List<ErrorDescription> errors;
 
     public ValidationErrorResponse(String message, List<ErrorDescription> errors) {
