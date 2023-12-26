@@ -24,7 +24,7 @@ public class Person {
     private String middleName;
     @Column(name = "age")
     private Integer age;
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Department department;
 
     @Override

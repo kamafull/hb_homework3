@@ -73,6 +73,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void delete(int id) {
         // TODO: NotImplemented: удаление всех людей из департамента и удаление самого департамента.
         //  Если не найдено, то ничего не делать
+        Department department = departmentDao.findById(id);
+        department.setPerson(null);
+        departmentDao.update(department);
         departmentDao.delete(id);
     }
 

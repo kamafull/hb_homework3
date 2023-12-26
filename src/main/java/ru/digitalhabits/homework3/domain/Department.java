@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Data
@@ -19,12 +20,14 @@ public class Department {
     private String name;
     @Column(name = "closed")
     private Boolean closed = false;
+    @OneToMany
+    private List<Person> person;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Department)) return false;
         Department that = (Department) o;
-        return Objects.equals(id, that.id);
+        return id.equals(that.id);
     }
 }

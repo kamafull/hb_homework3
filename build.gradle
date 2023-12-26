@@ -41,6 +41,8 @@ dependencies {
     implementation "com.google.guava:guava:$guavaVersion"
     implementation "org.springdoc:springdoc-openapi-webmvc-core:$openApiVersion"
     implementation "org.springdoc:springdoc-openapi-ui:$openApiVersion"
+    implementation("com.fasterxml.jackson.core:jackson-databind")
+    testImplementation 'junit:junit:4.13.1'
 
     compileOnly "com.google.code.findbugs:jsr305:$fingBugsVersion"
     compileOnly "org.projectlombok:lombok"

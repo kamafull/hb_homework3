@@ -145,10 +145,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getPersonsByDepartment(Department department) {
-        return personDao.findAll()
-                .stream()
-                .filter(a -> a.getDepartment().equals(department))
-                .collect(Collectors.toList());
+        return department.getPerson();
     }
 }
 
